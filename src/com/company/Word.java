@@ -16,7 +16,8 @@ public class Word {
             //System.out.println(file.exists());
             Scanner reader = new Scanner(file);
             int nrrandom = (rand.nextInt() % 5757 + 5757) % 5757, i = 0;
-            return Wordlist[nrrandom].toCharArray();
+            return ("shush".toCharArray());
+           // return Wordlist[nrrandom].toCharArray();
         }
        catch(FileNotFoundException e)
         {
@@ -41,16 +42,19 @@ public class Word {
     static boolean find_word(char[] word, String[] Wordlist)
     {
            int l=0, r=Wordlist.length-1;
-           while(l<=r)
+            String sword=new String(word);
+           while(l<r)
            {
                int m=(l+r+1)/2;
-               if(compare(Wordlist[m],word.toString())<=0)
+               if(compare(Wordlist[m],sword)<=0)
                    l=m;
                else r=m-1;
            }
            if(l>=Wordlist.length)
                return false;
-           return (compare(Wordlist[l],word.toString())==0);
+           if(compare(Wordlist[l],sword)==0)
+               return true;
+           return false;
     }
     static char[] found_word = new char[5];
     static boolean flag=false;
@@ -69,15 +73,16 @@ public class Word {
             bkt_count++;
             if(find_word(found_word,Wordlist))
                 flag=true;
-            if(bkt_count%100==0)
-                System.out.println(found_word);
+          //  if(bkt_count%100==0)
+            //    System.out.println(found_word);
         }
     }
     static char[] choose_word(ArrayList<Character>[] a, String [] Wordlist)
     {
         flag=false;
-        bkt(a,0,Wordlist
-        );
+        bkt(a,0,Wordlist);
+        if(flag==false)
+            return "nopos".toCharArray();
         return found_word;
     }
 }

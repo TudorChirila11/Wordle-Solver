@@ -2,32 +2,45 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+///planul acum e sa l fac mai destept: daca stiu ca am un singur e, si l-am gasit, sa stiu sa l sterg din restul. also
 public class Main {
 
     public static void main(String[] args) {
+        boolean[] yellowed = new boolean[30];
         String [] Wordlist = new String[6000];
         Sorter.parse(Wordlist);
         ArrayList<Character>[] a = new ArrayList[5];
         for(int i=0;i<5;++i)
             a[i]= new ArrayList<>();
         char cword[]= Word.choose_secret_word(Wordlist);
-        System.out.println("The wizard chose a random secret word.");
+        String scword = new String(cword);
+        System.out.println("The wizard chose a random secret word. ("+scword+")");
         Letters.initialize(a);
        // System.out.println(a[2].size());
         while(Checker.Tries<6)
         {
             Checker.Tries++;
             System.out.println("Trial number "+ Checker.Tries);
-            char word[]= Arrays.copyOf(Word.choose_word(a,Wordlist), Word.choose_word(a,Wordlist).length);
-            System.out.println(word);
+            char word[]=Word.choose_word(a,Wordlist);
+            String sword= new String(word);
+//            char word[]= Arrays.copyOf(word2, word2.length);
+            System.out.println("I chose the word "+sword+".");
             if(Arrays.equals(word,cword))
             {
                 System.out.println("I defeated the wizard! Congratulations to me!");
-                break;
+                return;
             }
-            char result[]=Checker.Spit(word,cword);
-            System.out.println("The wizard gave me the verdict: "+ result.toString());
+            char result[]=Checker.Spit(sword.toCharArray(),scword.toCharArray());
+            String sresult = new String (result);
+            System.out.println("The wizard gave me the verdict: "+ sresult);
+            Arrays.fill(yellowed,false);
+            for(int i=0;i<5;++i)
+                if(result[i]=='Y'||result[i]=='G')
+                    yellowed[word[i]-'a']=true;
+                System.out.println("before");
+            for(int i=0;i<5;++i)
+                System.out.println(a[i]);
+            System.out.println();
             for(int i=0;i<5;++i)
             {
                 if(result[i]=='G')
@@ -44,7 +57,7 @@ public class Main {
                         if(i!=j)
                             Letters.prioritize(a[j],word[i]);
                 }
-                else
+                else if(!yellowed[word[i]-'a'])
                 {
                     ///purge peste tot unde nu am deja o solutie
                     for(int j=0;j<5;++j)
@@ -52,8 +65,12 @@ public class Main {
                             Letters.purge(a[j],word[i]);
                 }
             }
+            System.out.println("After");
+            for(int i=0;i<5;++i)
+                System.out.println(a[i]);
+            System.out.println();
         }
         if(Checker.Tries==6)
-            System.out.println("Perish, mortal! The word was "+cword+".");
+            System.out.println("Perish, mortal! The word was "+scword+".");
     }
 }

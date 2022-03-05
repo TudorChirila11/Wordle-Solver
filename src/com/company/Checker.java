@@ -18,10 +18,10 @@ public class Checker {
                 locally_found[i]=true;
             }
         }
-        for(int i=0;i<5;++i)
+        for(int i=0;i<5;++i) ///ma plimb prin cuv meu
         {
-            for(int j=0;j<5;++j)
-                if(!locally_found[j]&&word[i]==cword[j])
+            for(int j=0;j<5;++j) ///ma plimb prin ala corect
+                if(!locally_found[i]&&word[i]==cword[j]) ///eroare aici
                 {
                     ans[i]='Y';
                     locally_found[j]=true;
