@@ -12,7 +12,7 @@ public class Sorter {
     {
         try
         {
-            File L5Words=new File("5Lwords_S");
+            File L5Words=new File("5Lwords");
             Scanner reader = new Scanner(L5Words);
             int n=0;
             while(reader.hasNextLine())
