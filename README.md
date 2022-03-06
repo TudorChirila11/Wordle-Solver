@@ -1,6 +1,7 @@
-# Wordle
-This java program solves a wordle, NYTimes Style.
-It has 2 main modes:
+# Wordle Solver
+* This java program solves a wordle, NYTimes Style.
+* *The project was created with the name 'Wordle' - might be a source of errors*
+* It has 2 main modes:
 ## Automated mode - can be set by `play_mode="automated"`
 * This gamemode roleplays as two players: 'the wizard' who randomly selects a 5-lettered word, and the computer, who tries to guess it in 6 tries. 
 * 'The wizard' gives the computer the following feedback after each guessed word: 
