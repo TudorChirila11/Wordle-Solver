@@ -9,9 +9,9 @@ It has 2 main modes:
   - 'G' fot green (the letter exist in the word, and is situated in the right position).
 
 You can notice that the style is exactly the same as the NYTimes one, and the rules are the same.
-## User Interaction Mode - can be set by `play_mode="literally anything"`
+## User Interaction Mode - can be set by `play_mode="anything else"`
 * In this gamemode, you know the correct word, and the computer tries to guess it. That means you have to give him a similar feedback after each guess.
-* For example, if the word you're thinking at is "trial", and the computer guesses "alibi", you will then have to type 'YYGBB'
+* For example, if the word you're thinking at is "trial", and the computer guesses "alibi", you will then have to type 'YYGBB' (without the quotes).
 
 Don't ask me why the second 'i' isn't marked as Y, that's how NYT does it.
 
